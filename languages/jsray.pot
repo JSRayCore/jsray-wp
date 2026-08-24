@@ -1,0 +1,386 @@
+# Copyright (C) 2026 JSRay
+# This file is distributed under the MIT license.
+msgid ""
+msgstr ""
+"Project-Id-Version: JSRay\n"
+"Report-Msgid-Bugs-To: https://github.com/JSRayCore/jsray-wp/issues\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: jsray\n"
+
+#: jsray.php:68
+msgid "Default — the signature JSRay palette"
+msgstr ""
+
+#: jsray.php:69
+msgid "Aurora — polar night, glacial blue with mint and violet"
+msgstr ""
+
+#: jsray.php:70
+msgid "Ember — warm forge, flame keywords with patina mint"
+msgstr ""
+
+#: jsray.php:71
+msgid "Fjord — Nordic low-chroma, calm for long reading"
+msgstr ""
+
+#: jsray.php:191
+msgid "JSRay: the bundled rendering core has been modified."
+msgstr ""
+
+#: jsray.php:198
+msgid "These files no longer match the official JSRay Core %1$s build: %2$s"
+msgstr ""
+
+#: jsray.php:206
+msgid "Reinstall the plugin to restore the official core. If you replaced the renderer on purpose, use the renderer adapter hooks instead — they let you swap the engine without editing bundled files."
+msgstr ""
+
+#: jsray.php:285
+msgid "JavaScript"
+msgstr ""
+
+#: jsray.php:286
+msgid "TypeScript"
+msgstr ""
+
+#: jsray.php:287
+msgid "JSX"
+msgstr ""
+
+#: jsray.php:288
+msgid "TSX"
+msgstr ""
+
+#: jsray.php:289
+msgid "Python"
+msgstr ""
+
+#: jsray.php:290
+msgid "PHP"
+msgstr ""
+
+#: jsray.php:291
+msgid "Go"
+msgstr ""
+
+#: jsray.php:292
+msgid "Swift"
+msgstr ""
+
+#: jsray.php:293
+msgid "Kotlin"
+msgstr ""
+
+#: jsray.php:294
+msgid "Dart"
+msgstr ""
+
+#: jsray.php:295
+msgid "Lua"
+msgstr ""
+
+#: jsray.php:296
+msgid "Java"
+msgstr ""
+
+#: jsray.php:297
+msgid "C"
+msgstr ""
+
+#: jsray.php:298
+msgid "C++"
+msgstr ""
+
+#: jsray.php:299
+msgid "C#"
+msgstr ""
+
+#: jsray.php:300
+msgid "Ruby"
+msgstr ""
+
+#: jsray.php:301
+msgid "Rust"
+msgstr ""
+
+#: jsray.php:302
+msgid "HTML"
+msgstr ""
+
+#: jsray.php:303
+msgid "XML"
+msgstr ""
+
+#: jsray.php:304
+msgid "SVG"
+msgstr ""
+
+#: jsray.php:305
+msgid "Vue"
+msgstr ""
+
+#: jsray.php:306
+msgid "CSS"
+msgstr ""
+
+#: jsray.php:307
+msgid "SCSS"
+msgstr ""
+
+#: jsray.php:308
+msgid "JSON"
+msgstr ""
+
+#: jsray.php:309
+msgid "JSONC"
+msgstr ""
+
+#: jsray.php:310
+msgid "Bash"
+msgstr ""
+
+#: jsray.php:311
+msgid "Shell"
+msgstr ""
+
+#: jsray.php:312
+msgid "Zsh"
+msgstr ""
+
+#: jsray.php:313
+msgid "Markdown"
+msgstr ""
+
+#: jsray.php:314
+msgid "SQL"
+msgstr ""
+
+#: jsray.php:315
+msgid "YAML"
+msgstr ""
+
+#: jsray.php:316
+msgid "Scala"
+msgstr ""
+
+#: jsray.php:317
+msgid "Objective-C"
+msgstr ""
+
+#: jsray.php:318
+msgid "R"
+msgstr ""
+
+#: jsray.php:319
+msgid "Perl"
+msgstr ""
+
+#: jsray.php:320
+msgid "PowerShell"
+msgstr ""
+
+#: jsray.php:321
+msgid "Elixir"
+msgstr ""
+
+#: jsray.php:322
+msgid "Haskell"
+msgstr ""
+
+#: jsray.php:323
+msgid "GraphQL"
+msgstr ""
+
+#: jsray.php:324
+msgid "TOML"
+msgstr ""
+
+#: jsray.php:325
+msgid "INI"
+msgstr ""
+
+#: jsray.php:326
+msgid "Dockerfile"
+msgstr ""
+
+#: jsray.php:327
+msgid "Makefile"
+msgstr ""
+
+#: jsray.php:328
+msgid "Diff"
+msgstr ""
+
+#: jsray.php:353 assets/js/jsray-block.js:28 assets/js/jsray-block.js:41 assets/js/jsray-block.js:121
+msgid "Auto detect"
+msgstr ""
+
+#: jsray.php:418 jsray.php:426
+msgid "The palette is not valid JSON."
+msgstr ""
+
+#: jsray.php:452 jsray.php:473
+msgid "Ignored an unusable color for "%1$s" in the %2$s theme."
+msgstr ""
+
+#: jsray.php:465
+msgid "Ignored "%s" — not a JSRay token in this Core version."
+msgstr ""
+
+#: jsray.php:496
+msgid "The palette contains no recognizable dark or light theme."
+msgstr ""
+
+#: jsray.php:595
+msgid "Custom palette accepted for: %s."
+msgstr ""
+
+#: jsray.php:777
+msgid "Rendering"
+msgstr ""
+
+#: jsray.php:784
+msgid "Palette"
+msgstr ""
+
+#: jsray.php:792
+msgid "Custom colors"
+msgstr ""
+
+#: jsray.php:800
+msgid "Theme mode"
+msgstr ""
+
+#: jsray.php:808
+msgid "Fallback language"
+msgstr ""
+
+#: jsray.php:816
+msgid "Front-end assets"
+msgstr ""
+
+#: jsray.php:824
+msgid "Code block coverage"
+msgstr ""
+
+#: jsray.php:841
+msgid "Settings"
+msgstr ""
+
+#: jsray.php:858 jsray.php:859 assets/js/jsray-block.js:190
+msgid "JSRay"
+msgstr ""
+
+#: jsray.php:883
+msgid "Every palette ships both a dark and a light variant, so this is independent of the theme mode below."
+msgstr ""
+
+#: jsray.php:892
+msgid "Note:"
+msgstr ""
+
+#: jsray.php:965
+msgid "Optional. Overrides individual colors on top of the palette above — anything you leave out keeps the palette\'s value. Accepts the same JSON the JSRay Theme Studio exports, covering all %d token classes."
+msgstr ""
+
+#: jsray.php:972
+msgid "Design a palette in the Theme Studio"
+msgstr ""
+
+#: jsray.php:988
+msgid "Dark"
+msgstr ""
+
+#: jsray.php:989
+msgid "Light"
+msgstr ""
+
+#: jsray.php:990
+msgid "Inherit from theme"
+msgstr ""
+
+#: jsray.php:992
+msgid "Dark and light set data-theme on the page. Inherit leaves your WordPress theme in control."
+msgstr ""
+
+#: jsray.php:1012
+msgid "Optional. Used when a code block has no language class and automatic detection is unsure."
+msgstr ""
+
+#: jsray.php:1032
+msgid "Load JSRay on public pages"
+msgstr ""
+
+#: jsray.php:1053
+msgid "Also render plain code blocks that carry no language class"
+msgstr ""
+
+#: jsray.php:1056
+msgid "On by default, so existing posts light up without editing. Turn it off to leave every unmarked block alone — useful when another plugin already renders code on your site."
+msgstr ""
+
+#: jsray.php:1074
+msgid "Official build verified"
+msgstr ""
+
+#: jsray.php:1075
+msgid "Modified — does not match the official build"
+msgstr ""
+
+#: jsray.php:1076
+msgid "Unverified — no integrity manifest found"
+msgstr ""
+
+#: jsray.php:1084
+msgid "Rendering core"
+msgstr ""
+
+#: jsray.php:1089
+msgid "JSRay Core %1$s — %2$s (%3$d files checked)"
+msgstr ""
+
+#: jsray.php:1090
+msgid "unknown version"
+msgstr ""
+
+#: jsray.php:1185 jsray.php:1304 assets/js/jsray-block.js:151
+msgid "Copy"
+msgstr ""
+
+#: jsray.php:1186
+msgid "Copied"
+msgstr ""
+
+#: jsray.php:1187
+msgid "Failed"
+msgstr ""
+
+#: jsray.php:1303
+msgid "Copy code"
+msgstr ""
+
+#: assets/js/jsray-block.js:194 assets/js/jsray-block.js:233
+msgid "Language"
+msgstr ""
+
+#: assets/js/jsray-block.js:203 assets/js/jsray-block.js:243 assets/js/jsray-block.js:246
+msgid "Filename"
+msgstr ""
+
+#: assets/js/jsray-block.js:212
+msgid "Copy button"
+msgstr ""
+
+#: assets/js/jsray-block.js:220
+msgid "Line numbers"
+msgstr ""
+
+#: assets/js/jsray-block.js:255
+msgid "Code"
+msgstr ""
+
+#: assets/js/jsray-block.js:258
+msgid "Paste or type code here..."
+msgstr ""

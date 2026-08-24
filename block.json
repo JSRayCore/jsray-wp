@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "jsray/code",
+  "title": "JSRay Code",
+  "category": "text",
+  "icon": "editor-code",
+  "description": "A JSRay-powered code block with auto detection, language override, filename, copy, and line-number controls.",
+  "keywords": [
+    "code",
+    "syntax",
+    "highlight",
+    "jsray"
+  ],
+  "textdomain": "jsray",
+  "attributes": {
+    "code": {
+      "type": "string",
+      "default": ""
+    },
+    "language": {
+      "type": "string",
+      "default": ""
+    },
+    "filename": {
+      "type": "string",
+      "default": ""
+    },
+    "showCopyButton": {
+      "type": "boolean",
+      "default": true
+    },
+    "showLineNumbers": {
+      "type": "boolean",
+      "default": false
+    },
+    "highlight": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "align": [
+      "wide",
+      "full"
+    ],
+    "anchor": true,
+    "html": false,
+    "className": true,
+    "customClassName": true,
+    "spacing": {
+      "margin": true
+    }
+  },
+  "editorScript": "jsray-block-editor",
+  "editorStyle": "jsray-block-editor",
+  "style": "jsray-block-frontend"
+}

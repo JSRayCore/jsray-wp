@@ -1,0 +1,65 @@
+# The oldest combination readme.txt claims to support: WordPress 6.0 on PHP 7.4.
+#
+# A "Requires at least" header is a promise, and an untested one is a guess. The
+# main compose file runs the newest WordPress, which is where features are
+# verified; this one is where the floor is checked.
+#
+#   sh tools/test-compat.sh       → runs the PHP suite against both
+#   docker compose -f docker-compose.legacy.yml down -v
+services:
+  db-legacy:
+    image: mariadb:10.6
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: wordpress
+    volumes:
+      - db-legacy:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      interval: 5s
+      retries: 20
+
+  wordpress-legacy:
+    image: wordpress:6.0-php7.4-apache
+    depends_on:
+      db-legacy:
+        condition: service_healthy
+    ports:
+      - '8081:80'
+    environment:
+      WORDPRESS_DB_HOST: db-legacy
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      # Deprecations are the point here: PHP 7.4 and WordPress 6.0 will complain
+      # about anything written for a newer runtime, and those notices are the
+      # finding, not noise.
+      WORDPRESS_DEBUG: '1'
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_DISPLAY', true);
+        define('SCRIPT_DEBUG', true);
+    volumes:
+      - wp-legacy:/var/www/html
+      - .:/var/www/html/wp-content/plugins/jsray:ro
+
+  cli-legacy:
+    image: wordpress:cli-php7.4
+    depends_on:
+      - wordpress-legacy
+    user: '33:33'
+    environment:
+      WORDPRESS_DB_HOST: db-legacy
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp-legacy:/var/www/html
+      - .:/var/www/html/wp-content/plugins/jsray:ro
+    entrypoint: ['wp']
+    command: ['--info']
+
+volumes:
+  db-legacy:
+  wp-legacy:

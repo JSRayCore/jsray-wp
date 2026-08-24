@@ -1,0 +1,70 @@
+/* =========================================================
+   Fjord · fjord theme
+   AUTO-GENERATED from fjord.json — do not edit by hand.
+   Run `node tools/generate-theme.mjs` after editing the palette.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  --jr-bg:          #232830;
+  --jr-fg:          #DCE2EC;
+  --jr-border:      #323945;
+  --jr-gutter-fg:   #59616D;
+  --jr-line-hl:     rgba(160,180,210,0.06);
+
+  --jr-keyword:       #7E9CC9;
+  --jr-function:      #88C0A8;
+  --jr-fn-decl:       #A3D9BE;
+  --jr-fn-builtin:    #C9A0C7;
+  --jr-var:           #DCE2EC;
+  --jr-var-param:     #D9B47F;
+  --jr-var-builtin:   #6FBFD9;
+  --jr-var-const:     #CBB88A;
+  --jr-type:          #79C7D4;
+  --jr-property:      #D9A0A8;
+  --jr-string:        #A8C98C;
+  --jr-regex:         #D9C98A;
+  --jr-number:        #D0A97E;
+  --jr-comment:       #667084;
+  --jr-doc:           #667084;
+  --jr-decorator:     #C98F6E;
+  --jr-operator:      #C5CDD9;
+  --jr-punct:         #59606E;
+  --jr-tag:           #7E9CC9;
+  --jr-attr:          #D9A0A8;
+  --jr-selector:      #88C0A8;
+  --jr-css-prop:      #D9A0A8;
+  --jr-css-unit:      #D0A97E;
+}
+
+[data-theme="light"] {
+  --jr-bg:          #F4F6F8;
+  --jr-fg:          #333A47;
+  --jr-border:      #DFE4EA;
+  --jr-gutter-fg:   #8C96A4;
+  --jr-line-hl:     rgba(60,90,130,0.05);
+
+  --jr-keyword:       #3E5F8A;
+  --jr-function:      #2E7D5B;
+  --jr-fn-decl:       #1D6B4A;
+  --jr-fn-builtin:    #8A5A96;
+  --jr-var:           #333A47;
+  --jr-var-param:     #9A6B1E;
+  --jr-var-builtin:   #2578A8;
+  --jr-var-const:     #7A6528;
+  --jr-type:          #1E7A96;
+  --jr-property:      #A85470;
+  --jr-string:        #4E7A2E;
+  --jr-regex:         #8A7222;
+  --jr-number:        #8A5E2E;
+  --jr-comment:       #7A8494;
+  --jr-doc:           #7A8494;
+  --jr-decorator:     #A0653C;
+  --jr-operator:      #454E5E;
+  --jr-punct:         #9AA4B2;
+  --jr-tag:           #3E5F8A;
+  --jr-attr:          #A85470;
+  --jr-selector:      #2E7D5B;
+  --jr-css-prop:      #A85470;
+  --jr-css-unit:      #8A5E2E;
+}

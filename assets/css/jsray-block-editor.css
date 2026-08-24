@@ -1,0 +1,52 @@
+.jsray-block-editor {
+  border: 1px solid #dcdcde;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.jsray-block-editor__toolbar {
+  align-items: center;
+  background: #f6f7f7;
+  border-bottom: 1px solid #dcdcde;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(150px, 220px) minmax(0, 1fr);
+  padding: 10px;
+}
+
+.jsray-block-editor__toolbar .components-base-control,
+.jsray-block-editor__toolbar .components-base-control__field {
+  margin-bottom: 0;
+}
+
+.jsray-block-editor__textarea {
+  margin: 0;
+}
+
+.jsray-block-editor__textarea textarea {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  display: block;
+  font: 13px/1.6 "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  min-height: 220px;
+  padding: 16px;
+  resize: vertical;
+  tab-size: 2;
+}
+
+.jsray-block-editor__preview {
+  border-top: 1px solid #dcdcde;
+  margin: 0;
+}
+
+.jsray-block-editor__preview .jsray-block__copy {
+  cursor: default;
+  opacity: 0.65;
+}
+
+@media (max-width: 700px) {
+  .jsray-block-editor__toolbar {
+    grid-template-columns: 1fr;
+  }
+}

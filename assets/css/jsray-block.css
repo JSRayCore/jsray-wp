@@ -1,0 +1,201 @@
+.jsray-block {
+  --jr-block-header-bg: color-mix(in srgb, var(--jr-bg) 88%, var(--jr-fg) 12%);
+  --jr-block-muted: color-mix(in srgb, var(--jr-fg) 58%, var(--jr-bg) 42%);
+  --jr-block-divider: color-mix(in srgb, var(--jr-border) 80%, transparent);
+  margin: 1.5em 0;
+  /* Clips the highlight band, which is deliberately wider than the block. */
+  overflow: hidden;
+}
+
+.jsray-block__header {
+  align-items: center;
+  background: var(--jr-block-header-bg);
+  border: 1px solid var(--jr-border);
+  border-bottom: 0;
+  border-radius: 8px 8px 0 0;
+  color: var(--jr-fg);
+  display: flex;
+  font: 12px/1.4 "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 12px 0 16px;
+}
+
+.jsray-block__title {
+  flex: 1 1 auto;
+  font-weight: 700;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.jsray-block__language {
+  color: var(--jr-block-muted);
+  flex: 0 0 auto;
+  font-size: 11px;
+  text-transform: uppercase;
+}
+
+.jsray-block__copy {
+  appearance: none;
+  background: transparent;
+  border: 1px solid var(--jr-border);
+  border-radius: 5px;
+  color: var(--jr-fg);
+  cursor: pointer;
+  flex: 0 0 auto;
+  font: inherit;
+  min-height: 28px;
+  padding: 0 9px;
+}
+
+.jsray-block__copy:hover,
+.jsray-block__copy:focus {
+  border-color: var(--jr-block-muted);
+  outline: none;
+}
+
+.jsray-block__body {
+  align-items: stretch;
+  display: flex;
+  min-width: 0;
+}
+
+.jsray-block__gutter {
+  background: var(--jr-bg);
+  border: 1px solid var(--jr-border);
+  border-right: 1px solid var(--jr-block-divider);
+  color: var(--jr-gutter-fg);
+  counter-reset: jsray-line;
+  flex: 0 0 auto;
+  font: 13px/1.65 "SF Mono", ui-monospace, Menlo, Consolas, monospace;
+  list-style: none;
+  margin: 0;
+  padding: 20px 11px 20px 14px;
+  text-align: right;
+  user-select: none;
+}
+
+.jsray-block__gutter li {
+  counter-increment: jsray-line;
+  min-width: 2ch;
+}
+
+.jsray-block__gutter li::before {
+  content: counter(jsray-line);
+}
+
+/* Highlighted lines.
+   The band is drawn from the gutter because that is the only element with one
+   node per line — the code is a single text run that JSRay re-tokenizes, so a
+   wrapper per line would not survive. `right: -100%` carries it across the
+   code column; .jsray-block clips the overflow. It deliberately does not
+   scroll with horizontally scrolled code: the point is to mark which line is
+   under discussion, and a band that slides away when the reader scrolls to
+   read the line stops doing that. */
+.jsray-block__body {
+  position: relative;
+}
+
+.jsray-block__gutter li.is-highlighted {
+  position: relative;
+}
+
+.jsray-block__gutter li.is-highlighted::after {
+  background: var(--jr-line-hl);
+  bottom: 0;
+  content: "";
+  left: -14px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  /* Not `right: -100%`: percentages resolve against the containing block,
+     which is this <li>, so -100% bought about thirty pixels and the band
+     stopped inside the gutter. A viewport width is wider than any block can
+     be, and .jsray-block clips what hangs over. */
+  width: 100vw;
+  z-index: 0;
+}
+
+.jsray-block__gutter li.is-highlighted::before {
+  color: var(--jr-fg);
+  position: relative;
+  z-index: 1;
+}
+
+
+.jsray-block pre.jsray {
+  border: 1px solid var(--jr-border);
+  flex: 1 1 auto;
+  margin: 0;
+  min-width: 0;
+}
+
+/* The gutter holds one <li> per logical line, so it can only stay aligned
+   while one logical line occupies one visual row. Themes routinely break that:
+   `pre { white-space: pre-wrap }` is the standard fix for code overflowing on
+   phones, and many ship it with `!important`. The moment a line wraps, the code
+   column gains a row the gutter has no item for, and every number below the
+   wrap labels the wrong line — the last line ends up with no number at all.
+   Measured on a real page: six logical lines rendered seven line boxes beside
+   six numbers.
+
+   Where the gutter is in use the invariant is enforced rather than hoped for,
+   and the code column scrolls horizontally instead — the same trade every code
+   host makes, and far better than numbers that lie. `!important` is here to win
+   against a theme that used it first; nothing else in this file needs it.
+
+   A block without line numbers keeps whatever wrapping the theme chose, because
+   nothing there depends on the row count. */
+.jsray-block.has-line-numbers pre.jsray,
+.jsray-block.has-line-numbers pre.jsray code {
+  overflow-wrap: normal !important;
+  white-space: pre !important;
+  word-break: normal !important;
+}
+
+.jsray-block__header + .jsray-block__body pre.jsray {
+  border-radius: 0 0 8px 8px;
+}
+
+.jsray-block__header + .jsray-block__body .jsray-block__gutter {
+  border-radius: 0 0 0 8px;
+  border-top: 1px solid var(--jr-border);
+}
+
+.jsray-block.has-line-numbers pre.jsray {
+  border-left: 0;
+  border-radius: 0 0 8px 0;
+}
+
+.jsray-block:not(.has-line-numbers) pre.jsray {
+  border-radius: 0 0 8px 8px;
+}
+
+.jsray-block:not(.has-line-numbers):not(:has(.jsray-block__header)) pre.jsray {
+  border-radius: 8px;
+}
+
+.jsray-block.has-line-numbers:not(:has(.jsray-block__header)) .jsray-block__gutter {
+  border-radius: 8px 0 0 8px;
+}
+
+.jsray-block.has-line-numbers:not(:has(.jsray-block__header)) pre.jsray {
+  border-radius: 0 8px 8px 0;
+}
+
+@media (max-width: 640px) {
+  .jsray-block__header {
+    padding-left: 12px;
+  }
+
+  .jsray-block__language {
+    display: none;
+  }
+
+  .jsray-block__gutter {
+    padding-left: 10px;
+    padding-right: 9px;
+  }
+}

@@ -1,0 +1,70 @@
+/* =========================================================
+   Aurora · aurora theme
+   AUTO-GENERATED from aurora.json — do not edit by hand.
+   Run `node tools/generate-theme.mjs` after editing the palette.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  --jr-bg:          #0F1522;
+  --jr-fg:          #D9E3F0;
+  --jr-border:      #1D2739;
+  --jr-gutter-fg:   #3D4A61;
+  --jr-line-hl:     rgba(140,180,255,0.07);
+
+  --jr-keyword:       #B08CFF;
+  --jr-function:      #38C6B4;
+  --jr-fn-decl:       #55E6D0;
+  --jr-fn-builtin:    #A8B8FF;
+  --jr-var:           #D9E3F0;
+  --jr-var-param:     #F5B971;
+  --jr-var-builtin:   #6FB3FF;
+  --jr-var-const:     #D9C58A;
+  --jr-type:          #4FD2FF;
+  --jr-property:      #FF9EB8;
+  --jr-string:        #FF9E80;
+  --jr-regex:         #FFD479;
+  --jr-number:        #C3E88D;
+  --jr-comment:       #5C6B84;
+  --jr-doc:           #5C6B84;
+  --jr-decorator:     #E0B15E;
+  --jr-operator:      #C7D3E3;
+  --jr-punct:         #566178;
+  --jr-tag:           #B08CFF;
+  --jr-attr:          #FF9EB8;
+  --jr-selector:      #38C6B4;
+  --jr-css-prop:      #FF9EB8;
+  --jr-css-unit:      #C3E88D;
+}
+
+[data-theme="light"] {
+  --jr-bg:          #F8FBFF;
+  --jr-fg:          #1E2A3E;
+  --jr-border:      #DCE6F2;
+  --jr-gutter-fg:   #8C9AAE;
+  --jr-line-hl:     rgba(30,90,180,0.05);
+
+  --jr-keyword:       #6C3FD6;
+  --jr-function:      #0F8C74;
+  --jr-fn-decl:       #00745E;
+  --jr-fn-builtin:    #4C5FD5;
+  --jr-var:           #1E2A3E;
+  --jr-var-param:     #B26B00;
+  --jr-var-builtin:   #0B69C7;
+  --jr-var-const:     #8A6B1E;
+  --jr-type:          #0080D6;
+  --jr-property:      #C23A6B;
+  --jr-string:        #D14D2E;
+  --jr-regex:         #B2762E;
+  --jr-number:        #557A00;
+  --jr-comment:       #71809A;
+  --jr-doc:           #71809A;
+  --jr-decorator:     #92701C;
+  --jr-operator:      #3E4A5E;
+  --jr-punct:         #9AA6B8;
+  --jr-tag:           #6C3FD6;
+  --jr-attr:          #C23A6B;
+  --jr-selector:      #0F8C74;
+  --jr-css-prop:      #C23A6B;
+  --jr-css-unit:      #557A00;
+}

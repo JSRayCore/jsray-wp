@@ -1,0 +1,70 @@
+# Local WordPress for developing and verifying the plugin.
+#
+#   docker compose up -d          → http://localhost:8080
+#   docker compose down -v        → tear down, including the database
+#
+# The repository is mounted straight into wp-content/plugins/jsray, so edits
+# here are live in the running site — no rebuild, no re-copy. Only the files
+# WordPress needs are mounted; tools/, tests/, and build/ stay out of the site.
+services:
+  db:
+    image: mariadb:11
+    environment:
+      MARIADB_DATABASE: wordpress
+      MARIADB_USER: wordpress
+      MARIADB_PASSWORD: wordpress
+      MARIADB_ROOT_PASSWORD: wordpress
+    volumes:
+      - db:/var/lib/mysql
+    healthcheck:
+      test: ['CMD', 'healthcheck.sh', '--connect', '--innodb_initialized']
+      interval: 5s
+      retries: 20
+
+  wordpress:
+    # Tracks the latest WordPress. tools/dev-site.sh upgrades the site to the
+    # current release on every run, so `Tested up to` in readme.txt reflects
+    # what was actually exercised rather than whatever the image happened to ship.
+    image: wordpress:php8.3-apache
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - '8080:80'
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      # Surface notices and deprecations instead of swallowing them — the point
+      # of this environment is to catch what static checks cannot.
+      WORDPRESS_DEBUG: '1'
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_DEBUG_DISPLAY', true);
+        define('SCRIPT_DEBUG', true);
+    volumes:
+      - wp:/var/www/html
+      - .:/var/www/html/wp-content/plugins/jsray:ro
+
+  # wp-cli against the same site: install WordPress, activate the plugin, seed
+  # test content. Run one-off commands with:
+  #   docker compose run --rm cli wp plugin list
+  cli:
+    image: wordpress:cli-php8.3
+    depends_on:
+      - wordpress
+    user: '33:33'
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - wp:/var/www/html
+      - .:/var/www/html/wp-content/plugins/jsray:ro
+    entrypoint: ['wp']
+    command: ['--info']
+
+volumes:
+  db:
+  wp:

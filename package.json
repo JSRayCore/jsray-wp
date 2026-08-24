@@ -1,0 +1,30 @@
+{
+  "name": "jsray-wp",
+  "version": "0.0.1-beta.1",
+  "private": true,
+  "description": "Official WordPress integration for the JSRay Core rendering kernel.",
+  "author": "Jie <jie@jsray.org>",
+  "license": "MIT",
+  "homepage": "https://jsray.org",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JSRayCore/jsray-wp.git"
+  },
+  "bugs": {
+    "url": "https://github.com/JSRayCore/jsray-wp/issues"
+  },
+  "scripts": {
+    "build": "sh tools/build-plugin.sh",
+    "check:versions": "node tools/check-versions.mjs",
+    "test": "node --test tests/*.mjs",
+    "build:pot": "node tools/make-pot.mjs",
+    "dev:site": "sh tools/dev-site.sh",
+    "dev:down": "docker compose down -v",
+    "test:php": "sh tools/test-php.sh",
+    "test:compat": "sh tools/test-compat.sh",
+    "check:core": "node tools/check-core-freshness.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

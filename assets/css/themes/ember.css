@@ -1,0 +1,70 @@
+/* =========================================================
+   Ember · ember theme
+   AUTO-GENERATED from ember.json — do not edit by hand.
+   Run `node tools/generate-theme.mjs` after editing the palette.
+   ========================================================= */
+
+:root,
+[data-theme="dark"] {
+  --jr-bg:          #1A1512;
+  --jr-fg:          #EDE3D9;
+  --jr-border:      #2E2620;
+  --jr-gutter-fg:   #5C4F44;
+  --jr-line-hl:     rgba(255,180,120,0.06);
+
+  --jr-keyword:       #F2545B;
+  --jr-function:      #4EC9A8;
+  --jr-fn-decl:       #6FE8C4;
+  --jr-fn-builtin:    #DE9BE0;
+  --jr-var:           #EDE3D9;
+  --jr-var-param:     #FFC078;
+  --jr-var-builtin:   #7AB8FF;
+  --jr-var-const:     #E0C285;
+  --jr-type:          #64C7E8;
+  --jr-property:      #FF9EB0;
+  --jr-string:        #FF9F7C;
+  --jr-regex:         #FFD479;
+  --jr-number:        #CBD96B;
+  --jr-comment:       #857468;
+  --jr-doc:           #857468;
+  --jr-decorator:     #E0A35E;
+  --jr-operator:      #E0D5C8;
+  --jr-punct:         #6E6258;
+  --jr-tag:           #F2545B;
+  --jr-attr:          #FF9EB0;
+  --jr-selector:      #4EC9A8;
+  --jr-css-prop:      #FF9EB0;
+  --jr-css-unit:      #CBD96B;
+}
+
+[data-theme="light"] {
+  --jr-bg:          #FDF9F3;
+  --jr-fg:          #33241C;
+  --jr-border:      #EDE2D2;
+  --jr-gutter-fg:   #A08C7C;
+  --jr-line-hl:     rgba(180,90,20,0.05);
+
+  --jr-keyword:       #C1273C;
+  --jr-function:      #0E7D66;
+  --jr-fn-decl:       #00694F;
+  --jr-fn-builtin:    #8746C9;
+  --jr-var:           #33241C;
+  --jr-var-param:     #A85E00;
+  --jr-var-builtin:   #0E66A8;
+  --jr-var-const:     #86611A;
+  --jr-type:          #0B6E9E;
+  --jr-property:      #B03A5E;
+  --jr-string:        #C24A1E;
+  --jr-regex:         #A66A14;
+  --jr-number:        #5F6B00;
+  --jr-comment:       #8A7A6E;
+  --jr-doc:           #8A7A6E;
+  --jr-decorator:     #8A6A14;
+  --jr-operator:      #4A3A30;
+  --jr-punct:         #B0A296;
+  --jr-tag:           #C1273C;
+  --jr-attr:          #B03A5E;
+  --jr-selector:      #0E7D66;
+  --jr-css-prop:      #B03A5E;
+  --jr-css-unit:      #5F6B00;
+}
