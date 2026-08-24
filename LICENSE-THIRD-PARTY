@@ -1,0 +1,47 @@
+Third-party notices for JSRay for WordPress
+===========================================
+
+The plugin itself is licensed GPLv2 or later; see LICENSE.
+
+It bundles a snapshot of JSRay Core, which is distributed under the MIT
+license and remains under it. MIT is GPL-compatible in this direction, so
+including it inside a GPLv2-or-later work is permitted; MIT asks that its
+notice travel with the code, which is what this file is for. The files
+themselves also keep their own headers.
+
+    assets/js/jsray.js
+    assets/css/jsray.css
+    assets/css/themes/aurora.css
+    assets/css/themes/default.css
+    assets/css/themes/ember.css
+    assets/css/themes/fjord.css
+
+Those files are synced from JSRay Core and must not be edited here: a change
+would be undone by the next sync, and stripping their headers would remove the
+attribution MIT requires.
+
+
+JSRay Core
+----------
+
+MIT License
+
+Copyright (c) 2026 JSRay
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

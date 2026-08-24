@@ -21,7 +21,7 @@ const version = release.version;
 const channel = release.channel;
 
 expect(release.project === 'jsray-wp', 'version.json project must be jsray-wp');
-expect(typeof version === 'string' && /^\d+\.\d+\.\d+-(internal|beta)\.\d+$|^\d+\.\d+\.\d+$/.test(version), `version.json has an unsupported version: ${version}`);
+expect(typeof version === 'string' && /^\d+\.\d+\.\d+-(?:internal\.\d+|beta(?:\.\d+)?)$|^\d+\.\d+\.\d+$/.test(version), `version.json has an unsupported version: ${version}`);
 expect(['internal', 'beta', 'stable'].includes(channel), `version.json has an unsupported channel: ${channel}`);
 
 if (channel === 'internal') {
@@ -31,7 +31,8 @@ if (channel === 'internal') {
 }
 
 if (channel === 'beta') {
-  expect(/-beta\.\d+$/.test(version), 'beta channel versions must end with -beta.N');
+  expect(/-beta(?:\.\d+)?$/.test(version),
+    'beta channel versions must end with -beta, optionally -beta.N');
   expect(release.publicBetaReleased === true, 'beta channel must set publicBetaReleased true');
 }
 
@@ -104,6 +105,49 @@ for (const palette of ['default', 'aurora', 'ember', 'fjord']) {
   expect(plugin.includes(`'${palette}'`) || palette === 'default', `palette ${palette} is bundled but not offered in jsray.php`);
 }
 // Both READMEs must keep the Core-vs-plugin boundary statement visible.
+// README badges state the version, the channel and the bundled Core, and
+// nothing was checking them: they sat three releases behind reality — `version
+// 0.0.1-internal.2`, `channel internal test`, `Core 0.0.1-beta.1` — on a
+// README that is the first thing anyone sees. shields.io escapes a hyphen as
+// `--`, which is why the badge form is derived rather than compared raw.
+const badgeVersion = version.replace(/-/g, '--');
+const badgeCore = release.bundledCore.version.replace(/-/g, '--');
+
+for (const doc of ['README.md', 'README.zh-CN.md']) {
+  includes(doc, `version-${badgeVersion}-`, `a version badge reading ${version}`);
+  includes(doc, `JSRay%20Core-${badgeCore}-`, `a Core badge reading ${release.bundledCore.version}`);
+  expect(
+    !/channel-internal/.test(read(doc)),
+    `${doc} still shows the internal-test channel badge`
+  );
+}
+
+// WordPress.org guideline 1: everything in the directory must be GPL or
+// GPL-compatible, and using WordPress's own licence is strongly recommended.
+// These four say it in four places, and a relicence that misses one leaves the
+// plugin claiming two different licences at once.
+includes('jsray.php', 'License: GPLv2 or later');
+includes('jsray.php', 'License URI: https://www.gnu.org/licenses/gpl-2.0.html');
+includes('readme.txt', 'License: GPLv2 or later');
+includes('readme.txt', 'License URI: https://www.gnu.org/licenses/gpl-2.0.html');
+expect(pkg.license === 'GPL-2.0-or-later', `package.json license must be GPL-2.0-or-later, found ${pkg.license}`);
+includes('LICENSE', 'GNU GENERAL PUBLIC LICENSE', 'the full GPL text');
+includes('LICENSE', 'Version 2, June 1991');
+
+// The bundled Core stays MIT and its notice has to travel with it — that is
+// what MIT asks for, and it is why those two files keep their own headers.
+// LICENSE is the unmodified GPLv2 text, because GitHub's licence detector
+// only recognises it that way — a custom preamble had it reading NOASSERTION.
+// The bundled Core's MIT notice therefore lives in its own file, which MIT is
+// satisfied by and which ships in the zip.
+expect(existsSync('LICENSE-THIRD-PARTY'), 'LICENSE-THIRD-PARTY missing');
+includes('LICENSE-THIRD-PARTY', 'MIT License', "the bundled Core's MIT notice");
+expect(
+  !/JSRay for WordPress/.test(read('LICENSE')),
+  'LICENSE must be the plain GPLv2 text — a preamble breaks GitHub licence detection'
+);
+includes('assets/js/jsray.js', '@license MIT', "the bundled Core's own licence header");
+
 includes('README.md', 'bundles a snapshot', 'the Core snapshot boundary statement');
 includes('README.zh-CN.md', '内置 Core 的快照', 'the Core snapshot boundary statement');
 

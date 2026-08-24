@@ -31,7 +31,7 @@ TMPDIR="${TMPDIR:-/tmp}/jsray-wp-zip.$$"
 rm -rf "$TMPDIR"
 mkdir -p "$TMPDIR/jsray" build
 
-cp jsray.php uninstall.php block.json readme.txt LICENSE "$TMPDIR/jsray/"
+cp jsray.php uninstall.php block.json readme.txt LICENSE LICENSE-THIRD-PARTY "$TMPDIR/jsray/"
 # Data files the plugin reads at runtime: the digests it verifies the bundled
 # Core against, and the token vocabulary it validates custom palettes with.
 cp core-integrity.json vocabulary.json "$TMPDIR/jsray/"

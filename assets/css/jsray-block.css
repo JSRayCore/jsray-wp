@@ -89,11 +89,12 @@
 /* Highlighted lines.
    The band is drawn from the gutter because that is the only element with one
    node per line — the code is a single text run that JSRay re-tokenizes, so a
-   wrapper per line would not survive. `right: -100%` carries it across the
-   code column; .jsray-block clips the overflow. It deliberately does not
-   scroll with horizontally scrolled code: the point is to mark which line is
-   under discussion, and a band that slides away when the reader scrolls to
-   read the line stops doing that. */
+   wrapper per line would not survive. How far it reaches is on the rule that
+   draws it, below. .jsray-block clips whatever hangs over.
+
+   It deliberately does not scroll with horizontally scrolled code: the point
+   is to mark which line is under discussion, and a band that slides away when
+   the reader scrolls to read the line stops doing that. */
 .jsray-block__body {
   position: relative;
 }

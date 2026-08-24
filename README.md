@@ -7,10 +7,10 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.0.1--internal.2-lightgrey)](CHANGELOG.md)
-[![Channel](https://img.shields.io/badge/channel-internal%20test-lightgrey)](CHANGELOG.md)
-[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.1--beta.1-success)](https://github.com/JSRayCore/JSRay)
+[![License: GPL v2+](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.0.1--beta-blue)](CHANGELOG.md)
+[![Channel](https://img.shields.io/badge/channel-public%20beta-blue)](CHANGELOG.md)
+[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.1--beta.5-success)](https://github.com/JSRayCore/JSRay)
 [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A5%206.0-blue)](readme.txt)
 [![PHP](https://img.shields.io/badge/PHP-%E2%89%A5%207.4-777bb4)](jsray.php)
 
@@ -56,6 +56,18 @@ the token vocabulary synced from the bundled Core — and values must be real
 colors, so a palette cannot inject CSS. Tokens from a newer Core are ignored
 rather than rejected, which keeps palettes portable across versions.
 
+## Compatibility
+
+Both ends of the range `readme.txt` declares are tested, not just the newest:
+
+| | WordPress | PHP |
+|---|---|---|
+| Floor | 6.0 | 7.4 |
+| Current | 7.1 | 8.3 |
+
+`npm run test:compat` brings up both environments, runs the PHP assertions and a
+real page render in each, and fails on any warning or deprecation notice.
+
 ## Renderer Boundary
 
 The plugin uses JSRay Core by default. It is not locked to JSRay Core internally: renderer adapters can extend languages, replace front-end assets, or filter the final block and shortcode HTML.
@@ -69,6 +81,7 @@ jsray_wp_loader_dependencies
 jsray_wp_frontend_config
 jsray_wp_rendered_block_html
 jsray_wp_rendered_shortcode_html
+jsray_wp_palettes
 ```
 
 Front-end adapters can expose:

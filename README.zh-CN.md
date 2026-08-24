@@ -7,10 +7,10 @@
 
 [English](README.md) · **简体中文**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.0.1--internal.2-lightgrey)](CHANGELOG.md)
-[![Channel](https://img.shields.io/badge/channel-internal%20test-lightgrey)](CHANGELOG.md)
-[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.1--beta.1-success)](https://github.com/JSRayCore/JSRay)
+[![License: GPL v2+](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-0.0.1--beta-blue)](CHANGELOG.md)
+[![Channel](https://img.shields.io/badge/channel-%E5%85%AC%E5%BC%80%E6%B5%8B%E8%AF%95%E7%89%88-blue)](CHANGELOG.md)
+[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.1--beta.5-success)](https://github.com/JSRayCore/JSRay)
 [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A5%206.0-blue)](readme.txt)
 [![PHP](https://img.shields.io/badge/PHP-%E2%89%A5%207.4-777bb4)](jsray.php)
 
@@ -51,7 +51,7 @@
 | | WordPress | PHP |
 |---|---|---|
 | 下限 | 6.0 | 7.4 |
-| 当前 | 7.0 | 8.3 |
+| 当前 | 7.1 | 8.3 |
 
 `npm run test:compat` 会把两套环境都起起来,各自跑一遍 PHP 测试和真实页面渲染,出现任何警告或弃用提示即失败。
 
@@ -68,6 +68,7 @@ jsray_wp_loader_dependencies
 jsray_wp_frontend_config
 jsray_wp_rendered_block_html
 jsray_wp_rendered_shortcode_html
+jsray_wp_palettes
 ```
 
 前端适配器可以提供:

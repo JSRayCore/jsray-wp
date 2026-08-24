@@ -42,9 +42,32 @@ code lives in `assets/js/jsray-block.js`, `assets/js/jsray-loader.js`, and the
 
 ## Versioning
 
-The plugin version lives in **three** places and `npm run check:versions` enforces that they agree:
-`version.json`, `package.json`, and the `Version:` header in `jsray.php`.
+The plugin version lives in **five** places and `npm run check:versions` enforces
+that they agree: `version.json`, `package.json`, the `Version:` header and the
+`JSRAY_WP_VERSION` constant in `jsray.php`, and `Stable tag` in `readme.txt`.
 `bundledCore.version` is maintained by the sync script — do not hand-edit it.
+
+### The ladder
+
+Each beta bumps the **patch** number. There is no counter after `-beta`: a
+patch is never released twice, so a counter would carry no information —
+Core keeps one because its betas iterate within a patch, this does not.
+
+```
+0.0.1-beta → 0.0.1-beta → 0.0.3-beta.1 → … → 0.1.0
+```
+
+`0.1.0` is where the beta label comes off, and it is the version that goes to
+WordPress.org. Until then the channel stays `beta`, because `stable` claims the
+surface has stopped changing and saying it earlier makes the label describe
+something other than the state.
+
+The major stays `0` regardless: the ecosystem rule ties an integration's major
+to the Core it bundles, and Core is still `0.x`.
+
+Sorting is `version_compare()`, not string order — which is the reason the
+counter exists at all and why `0.0.10-beta.1` correctly follows `0.0.9-beta.1`
+rather than `0.0.1-beta`.
 
 ## Commit conventions
 

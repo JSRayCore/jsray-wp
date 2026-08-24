@@ -43,7 +43,7 @@ for (const file of sources) {
 }
 
 const header = `# Copyright (C) 2026 JSRay
-# This file is distributed under the MIT license.
+# This file is distributed under the GPLv2 or later license.
 msgid ""
 msgstr ""
 "Project-Id-Version: JSRay\\n"

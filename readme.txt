@@ -4,16 +4,18 @@ Tags: code rendering, code blocks, gutenberg, syntax highlighting, developer too
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 0.0.1-beta.1
-License: MIT
-License URI: https://opensource.org/licenses/MIT
+Stable tag: 0.0.1-beta
+License: GPLv2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 JSRay Core rendering for WordPress code blocks.
 
 == Description ==
 
-Public beta. The plugin is feature-complete for its 0.0.1 line; the beta label
-means the API surface and settings may still shift before 1.0.
+Public beta. Renders code blocks with JSRay Core: 35 language families, 23
+token classes, four palettes in dark and light, and no third-party requests.
+The major version tracks the bundled Core's, so this line stays on 0.x until
+Core reaches 1.0.
 
 Official site: https://jsray.org
 
@@ -129,7 +131,16 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 
 == Changelog ==
 
-= 0.0.1-beta.1 =
+= 0.0.1-beta =
+* Shortcodes now render through the same path as the block, so they get the block stylesheet — previously the markup carried JSRay classes with no CSS behind it.
+* Shortcodes gained what blocks already had: filename, copy button, line numbers, a highlight="3,7-9" line spec, and a custom class.
+* Added line highlighting, and hovering a line now lights it. Both need line numbers turned on.
+* Fixed every line rendering double-spaced, caused by wpautop inserting a break where the renderer had already put a newline.
+* Fixed the highlight band covering only the line number instead of the whole row.
+* Fixed line numbers drifting out of step with the code on themes that wrap long lines. Where line numbers are shown, code now scrolls sideways instead of wrapping.
+* Removed load_plugin_textdomain(), discouraged since WordPress 4.6 and loading nothing here.
+* Verified on WordPress 7.1 with PHP 8.3 and on 6.0 with PHP 7.4; the official Plugin Check reports no errors or warnings.
+* Bundled JSRay Core 0.0.1-beta.5.
 * First public beta.
 * Added custom colors: override any of the 23 token classes with a palette from the JSRay Theme Studio, validated against the bundled Core's token vocabulary.
 * Added core integrity verification with an admin warning when the bundled renderer no longer matches its official build.
@@ -142,7 +153,7 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 * Translations now actually load, including the block editor and the copy button labels.
 * Added block.json as the single source of truth for the block definition.
 * Added uninstall cleanup, a Settings link on the Plugins screen, and the LICENSE file to the packaged zip.
-* Bundled JSRay Core 0.0.1-beta.1.
+* Bundled JSRay Core 0.0.1-beta.
 
 = 0.0.1-internal.2 =
 * Bundled JSRay Core 0.0.1-internal.2 with 13 new language families (Scala, Objective-C, R, Perl, PowerShell, Elixir, Haskell, GraphQL, TOML, INI, Dockerfile, Makefile, Diff).
@@ -160,5 +171,5 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 
 == Upgrade Notice ==
 
-= 0.0.1-beta.1 =
+= 0.0.1-beta =
 First public beta. Bundles JSRay Core 0.0.1-beta.5, which corrects eight literal forms that were previously mis-coloured — Rust lifetimes, Go and C++ raw strings, Java text blocks, numeric type suffixes and Python f-strings — and adds twenty keywords from recent language versions.

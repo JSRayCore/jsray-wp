@@ -297,3 +297,29 @@ test('hovering a line lights it, through the gutter the band already uses', () =
   assert.ok(band, 'no band is drawn for a hovered line');
   assert.match(band, /var\(--jr-line-hl\)/);
 });
+
+test('the two changelogs list the same releases', () => {
+  // The plugin keeps a changelog twice: CHANGELOG.md for the repository and a
+  // Changelog section in readme.txt, which is the one WordPress.org renders on
+  // the plugin page. check:versions only asserts the *current* version appears
+  // in both, so the histories were free to drift — and they had: readme.txt was
+  // missing a released version entirely, and a global version-string replace
+  // had renamed one heading while leaving the old release's body under it.
+  const md = read('CHANGELOG.md');
+  const txt = read('readme.txt');
+
+  const inMd = [...md.matchAll(/^## \[([^\]]+)\]/gm)]
+    .map((m) => m[1])
+    .filter((v) => v !== 'Unreleased');
+
+  const section = txt.slice(txt.indexOf('== Changelog =='));
+  const inTxt = [...section.slice(0, section.indexOf('== Upgrade Notice ==')).matchAll(/^= (\S+) =$/gm)]
+    .map((m) => m[1]);
+
+  assert.deepEqual(
+    inTxt,
+    inMd,
+    'CHANGELOG.md and the readme.txt Changelog section must list the same ' +
+      'releases in the same order — the readme one is what users read'
+  );
+});

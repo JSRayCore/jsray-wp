@@ -3,36 +3,46 @@
  * Plugin Name: JSRay
  * Plugin URI: https://jsray.org
  * Description: JSRay Core rendering for WordPress code blocks.
- * Version: 0.0.1-beta.1
+ * Version: 0.0.1-beta
  * Author: Jie
  * Author URI: https://jsray.org
- * License: MIT
- * License URI: https://opensource.org/licenses/MIT
+ * License: GPLv2 or later
+ * License URI: https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain: jsray
  * Domain Path: /languages
  * Requires at least: 6.0
  * Requires PHP: 7.4
  *
  * @package JSRay
+ *
+ * JSRay for WordPress
+ * Copyright (C) 2026 JSRay
+ *
+ * This program is free software; you can redistribute it and/or modify it
+ * under the terms of the GNU General Public License as published by the Free
+ * Software Foundation; either version 2 of the License, or (at your option)
+ * any later version.
+ *
+ * This program is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or
+ * FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for
+ * more details.
+ *
+ * You should have received a copy of the GNU General Public License along with
+ * this program; if not, see <https://www.gnu.org/licenses/gpl-2.0.html>.
+ *
+ * Bundled JSRay Core stays MIT — see LICENSE-THIRD-PARTY.
  */
 
 if (! defined('ABSPATH')) {
 	exit;
 }
 
-define('JSRAY_WP_VERSION', '0.0.1-beta.1');
+define('JSRAY_WP_VERSION', '0.0.1-beta');
 define('JSRAY_WP_FILE', __FILE__);
 define('JSRAY_WP_DIR', plugin_dir_path(__FILE__));
 define('JSRAY_WP_URL', plugin_dir_url(__FILE__));
 
-/**
- * Load translations.
- *
- * Plugins distributed outside WordPress.org do not get automatic loading, so
- * the bundled /languages directory is registered explicitly.
- *
- * @return void
- */
 /*
  * Translations load themselves.
  *

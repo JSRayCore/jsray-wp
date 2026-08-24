@@ -1,10 +1,10 @@
 {
   "name": "jsray-wp",
-  "version": "0.0.1-beta.1",
+  "version": "0.0.1-beta",
   "private": true,
   "description": "Official WordPress integration for the JSRay Core rendering kernel.",
   "author": "Jie <jie@jsray.org>",
-  "license": "MIT",
+  "license": "GPL-2.0-or-later",
   "homepage": "https://jsray.org",
   "repository": {
     "type": "git",
