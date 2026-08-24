@@ -33,10 +33,21 @@ define('JSRAY_WP_URL', plugin_dir_url(__FILE__));
  *
  * @return void
  */
-function jsray_wp_load_textdomain() {
-	load_plugin_textdomain('jsray', false, dirname(plugin_basename(JSRAY_WP_FILE)) . '/languages');
-}
-add_action('init', 'jsray_wp_load_textdomain', 1);
+/*
+ * Translations load themselves.
+ *
+ * `load_plugin_textdomain()` used to be required and has been discouraged since
+ * WordPress 4.6: for a plugin on WordPress.org the translations arrive from
+ * translate.wordpress.org without it, and since the just-in-time loader landed,
+ * a `.mo` sitting in the plugin's own languages/ directory is picked up too. The
+ * minimum supported version here is 6.0, so both paths are always available and
+ * the call had nothing left to do — it loaded no file, because only a .pot ships
+ * today. Plugin Check flags it, and a call that does nothing is not worth a
+ * review round.
+ *
+ * Text Domain and Domain Path stay in the plugin header, which is what both
+ * loaders actually read.
+ */
 
 /**
  * Return plugin defaults.

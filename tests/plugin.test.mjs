@@ -85,8 +85,23 @@ test('the settings screen is capability-gated and its input sanitized', () => {
 });
 
 test('translations are wired end to end', () => {
+  // The header is what both loaders read — translate.wordpress.org for a hosted
+  // plugin, and the just-in-time loader for a .mo shipped in languages/.
+  assert.match(php, /Text Domain: jsray\b/);
   assert.match(php, /Domain Path: \/languages/);
-  assert.match(php, /load_plugin_textdomain\('jsray'/);
+
+  // `load_plugin_textdomain()` has been discouraged since WordPress 4.6 and did
+  // nothing here — only a .pot ships, so it loaded no file. Plugin Check flags
+  // it. Asserting its absence keeps it from being added back as boilerplate.
+  // Comments are stripped first: the code explains why the call is gone, and
+  // naming it there is not the same as making it.
+  const code = php.replace(/\/\*[\s\S]*?\*\//g, '').replace(/^\s*\/\/.*$/gm, '');
+  assert.doesNotMatch(
+    code,
+    /load_plugin_textdomain\s*\(/,
+    'translations load themselves on WordPress 6.0+; the manual call is dead weight'
+  );
+
   assert.match(php, /wp_set_script_translations\('jsray-block-editor', 'jsray'/);
   assert.ok(existsSync(resolve(ROOT, 'languages/jsray.pot')), 'languages/jsray.pot missing — run npm run build:pot');
 

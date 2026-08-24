@@ -2,7 +2,7 @@
 Contributors: liuyingjierun
 Tags: code rendering, code blocks, gutenberg, syntax highlighting, developer tools
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 7.4
 Stable tag: 0.0.1-beta.1
 License: MIT
@@ -120,6 +120,13 @@ code is the official build or has been altered on disk.
 Yes. Six PHP filters and a `window.JSRayWP.renderer` slot let you extend or
 replace the rendering engine while keeping the block UI, settings, and markup.
 
+== Screenshots ==
+
+1. A rendered code block: filename tab, language label, copy button, line numbers, and 23-class token colouring.
+2. Line highlighting. `highlight="3,7-9"` marks the lines being discussed, and hovering a line lights it.
+3. The four bundled palettes in dark and light, all generated from one source per theme.
+4. The settings screen: theme mode, palette, custom colours, fallback language, and asset control.
+
 == Changelog ==
 
 = 0.0.1-beta.1 =
@@ -150,3 +157,8 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 * Added automatic language detection for plain WordPress code blocks.
 * Added front-end block styling and copy-button behavior.
 * Initial WordPress plugin wrapper for JSRay.
+
+== Upgrade Notice ==
+
+= 0.0.1-beta.1 =
+First public beta. Bundles JSRay Core 0.0.1-beta.5, which corrects eight literal forms that were previously mis-coloured — Rust lifetimes, Go and C++ raw strings, Java text blocks, numeric type suffixes and Python f-strings — and adds twenty keywords from recent language versions.

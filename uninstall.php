@@ -13,10 +13,25 @@ if (! defined('WP_UNINSTALL_PLUGIN')) {
 	exit;
 }
 
-delete_option('jsray_wp_options');
+/**
+ * Delete the option everywhere it can exist.
+ *
+ * The work is inside a function because a variable written at file scope in
+ * uninstall.php is a global, and an unprefixed global from a plugin can collide
+ * with anything else in the request. Plugin Check flags it, and it is the kind
+ * of thing that costs a review round for no benefit — nothing here needs to
+ * outlive the call.
+ *
+ * @return void
+ */
+function jsray_wp_uninstall_cleanup() {
+	delete_option('jsray_wp_options');
 
-// Multisite: the option is per-site, so clear it on every site in the network.
-if (is_multisite()) {
+	// The option is per-site, so on a network it has to be cleared on each one.
+	if (! is_multisite()) {
+		return;
+	}
+
 	$site_ids = get_sites(
 		array(
 			'fields'                 => 'ids',
@@ -31,3 +46,5 @@ if (is_multisite()) {
 		restore_current_blog();
 	}
 }
+
+jsray_wp_uninstall_cleanup();
