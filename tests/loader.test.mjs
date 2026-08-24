@@ -58,7 +58,17 @@ function bootLoader({ config = {}, jsray, codeEls = [], copyButtons = [], clipbo
     selectors: [],
     querySelectorAll(sel) {
       document.selectors.push(sel);
-      return sel.includes('data-jsray-copy') ? copyButtons : codeEls;
+
+      if (sel.includes('data-jsray-copy')) return copyButtons;
+
+      // Every other selector used to fall through to the code elements, so a
+      // query for a *block* was answered with a list of <code>. These tests
+      // model code elements and nothing else; an empty list is the truthful
+      // answer, and returning codeEls instead sent bindLineHover hunting for a
+      // gutter inside a <code>.
+      if (sel.includes('.jsray-block')) return [];
+
+      return codeEls;
     },
     createElement: () => ({ style: {}, setAttribute() {}, select() {} }),
     execCommand: () => true,

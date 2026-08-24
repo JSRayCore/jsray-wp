@@ -170,6 +170,7 @@
     });
 
     bindCopyButtons(root);
+    bindLineHover(root);
   }
 
   function setCopyState(button, label) {
@@ -267,9 +268,87 @@
     });
   }
 
+  /**
+   * Light the line the pointer is over.
+   *
+   * The code column has no per-line element to hover: JSRay replaces the whole
+   * innerHTML when it re-tokenizes, so a wrapper per line would not survive.
+   * The gutter does have one node per line, and it already knows how to paint a
+   * band across the row for `highlight="3,7-9"`. So the pointer's Y is resolved
+   * against the gutter items and that same band is reused.
+   *
+   * Reading each item's own rectangle rather than dividing by line-height is
+   * what makes it exact — it assumes nothing about padding and stays correct if
+   * the theme changes the line height.
+   *
+   * Only blocks showing line numbers can do this. Without the gutter there is
+   * no per-line element anywhere in the markup to hang the band on.
+   */
+  function bindLineHover(scope) {
+    const root = scope && scope.querySelectorAll ? scope : document;
+    const blocks = Array.prototype.slice.call(
+      root.querySelectorAll('.jsray-block.has-line-numbers')
+    );
+
+    blocks.forEach(function (block) {
+      if (block.dataset.jsrayHoverBound) return;
+
+      const gutter = block.querySelector('.jsray-block__gutter');
+      if (!gutter) return;
+
+      block.dataset.jsrayHoverBound = '1';
+
+      let current = null;
+      let queued = false;
+      let pointerY = 0;
+
+      const clear = function () {
+        if (current) current.classList.remove('is-hovered');
+        current = null;
+      };
+
+      const resolve = function () {
+        queued = false;
+
+        const items = gutter.children;
+        let found = null;
+
+        for (let i = 0; i < items.length; i++) {
+          const box = items[i].getBoundingClientRect();
+
+          if (pointerY >= box.top && pointerY < box.bottom) {
+            found = items[i];
+            break;
+          }
+        }
+
+        if (found === current) return;
+
+        clear();
+
+        if (found) {
+          found.classList.add('is-hovered');
+          current = found;
+        }
+      };
+
+      block.addEventListener('mousemove', function (event) {
+        pointerY = event.clientY;
+
+        if (queued) return;
+
+        queued = true;
+        window.requestAnimationFrame(resolve);
+      });
+
+      block.addEventListener('mouseleave', clear);
+    });
+  }
+
   function boot() {
     highlight(document);
     bindCopyButtons(document);
+    bindLineHover(document);
     observe();
   }
 

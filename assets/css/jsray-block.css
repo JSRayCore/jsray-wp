@@ -98,11 +98,23 @@
   position: relative;
 }
 
-.jsray-block__gutter li.is-highlighted {
+/* Hovering a line lights it, reusing the band the `highlight` attribute
+   already draws. The code column has no per-line element to hover — JSRay
+   replaces the whole innerHTML when it re-tokenizes — so the loader resolves
+   the pointer's Y against the gutter items and marks one of them. Which is
+   also why this only works where line numbers are on: without the gutter there
+   is no per-line node anywhere in the markup.
+
+   Same token as the static band rather than a second one: `lineHighlight` is
+   the only line-level surface in the 23-key vocabulary, and adding a key is a
+   governed, Core-level change that one hover state does not justify. */
+.jsray-block__gutter li.is-highlighted,
+.jsray-block__gutter li.is-hovered {
   position: relative;
 }
 
-.jsray-block__gutter li.is-highlighted::after {
+.jsray-block__gutter li.is-highlighted::after,
+.jsray-block__gutter li.is-hovered::after {
   background: var(--jr-line-hl);
   bottom: 0;
   content: "";
@@ -118,7 +130,8 @@
   z-index: 0;
 }
 
-.jsray-block__gutter li.is-highlighted::before {
+.jsray-block__gutter li.is-highlighted::before,
+.jsray-block__gutter li.is-hovered::before {
   color: var(--jr-fg);
   position: relative;
   z-index: 1;

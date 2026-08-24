@@ -252,3 +252,33 @@ test('line numbers cannot be desynced by a theme that wraps code', () => {
   // The code has to go somewhere once it stops wrapping.
   assert.match(read('assets/css/jsray.css'), /overflow-x:\s*auto/);
 });
+
+test('hovering a line lights it, through the gutter the band already uses', () => {
+  // The code column has no per-line element to hover — JSRay replaces the whole
+  // innerHTML when it re-tokenizes — so the pointer's Y is resolved against the
+  // gutter items instead, and the band `highlight="3,7-9"` already draws is
+  // reused. Reading each item's own rectangle is what keeps it exact: dividing
+  // by line-height would assume a padding the theme is free to change.
+  const js = read('assets/js/jsray-loader.js');
+  const css = read('assets/css/jsray-block.css');
+
+  assert.match(js, /function bindLineHover/, 'the loader does not wire line hover');
+  assert.match(js, /getBoundingClientRect/, 'hover must resolve against real rectangles');
+  assert.match(js, /requestAnimationFrame/, 'mousemove must be throttled to a frame');
+  assert.match(js, /mouseleave/, 'leaving the block must clear the marked line');
+
+  // Bound through highlight(), so blocks the observer adds later get it too.
+  assert.match(
+    js,
+    /bindCopyButtons\(root\);\s*\n\s*bindLineHover\(root\);/,
+    'hover must be bound where copy buttons are, or dynamic blocks miss it'
+  );
+
+  // Same band, same palette token — `lineHighlight` is the only line-level
+  // surface in the vocabulary, and adding a key is a governed Core change.
+  const band = css
+    .split('}')
+    .find((b) => b.includes('li.is-hovered::after'));
+  assert.ok(band, 'no band is drawn for a hovered line');
+  assert.match(band, /var\(--jr-line-hl\)/);
+});
