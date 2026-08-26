@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { createHash } from 'node:crypto';
 import { resolve } from 'node:path';
 
@@ -121,6 +121,27 @@ for (const doc of ['README.md', 'README.zh-CN.md']) {
     `${doc} still shows the internal-test channel badge`
   );
 }
+
+// WordPress.org assets. These live beside trunk/ in SVN rather than inside it,
+// so they never reach the zip — which is also why nothing else here would
+// notice them missing. The numbering is a contract: screenshot-N.png pairs
+// with the Nth line under `== Screenshots ==`, and an image with no line shows
+// up unlabelled on the plugin page.
+for (const asset of ['banner-772x250.png', 'banner-1544x500.png',
+                     'icon-128x128.png', 'icon-256x256.png']) {
+  expect(existsSync(`.wordpress-org/${asset}`), `.wordpress-org/${asset} missing`);
+}
+
+const shots = readdirSync('.wordpress-org').filter((f) => /^screenshot-\d+\.png$/.test(f));
+const listed = (read('readme.txt').match(/^== Screenshots ==$([\s\S]*?)^== /m)?.[1] ?? '')
+  .split('\n').filter((l) => /^\d+\.\s/.test(l)).length;
+
+expect(shots.length > 0, 'no screenshot-N.png in .wordpress-org/');
+expect(
+  shots.length === listed,
+  `${shots.length} screenshot files but readme.txt lists ${listed} — ` +
+    'an image without a line renders unlabelled on the plugin page'
+);
 
 // WordPress.org guideline 1: everything in the directory must be GPL or
 // GPL-compatible, and using WordPress's own licence is strongly recommended.

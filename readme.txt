@@ -124,10 +124,8 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 
 == Screenshots ==
 
-1. A rendered code block: filename tab, language label, copy button, line numbers, and 23-class token colouring.
-2. Line highlighting. `highlight="3,7-9"` marks the lines being discussed, and hovering a line lights it.
-3. The four bundled palettes in dark and light, all generated from one source per theme.
-4. The settings screen: theme mode, palette, custom colours, fallback language, and asset control.
+1. A rendered code block: filename tab, language label, copy button, line numbers, and line highlighting. `highlight="4,8-10"` marks the lines under discussion; hovering a line lights it the same way.
+2. The settings screen. The notice at the top is the integrity check: the bundled renderer is hashed against the digests JSRay Core published, so a modified file is reported rather than silently used.
 
 == Changelog ==
 
