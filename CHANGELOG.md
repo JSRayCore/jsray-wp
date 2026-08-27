@@ -18,6 +18,10 @@ Continues the 0.0.1 beta line. The major version tracks the bundled Core's, so t
 - **Shortcodes reach everything blocks can do.** `[jsray]` accepts a filename, a copy button, line numbers, a `highlight="3,7-9"` line spec and a custom class, and renders through the same path the block does.
 - **Line highlighting**, and **hovering a line lights it**. The band is drawn from the gutter, which is the only per-line element in the markup — JSRay replaces the whole `innerHTML` when it re-tokenizes, so a wrapper per line would not survive. Hover therefore needs line numbers to be on.
 
+### Changed
+
+- **Bundled JSRay Core 0.0.2-beta.1.** It corrects a regression the previous snapshot carried: an apostrophe in a Rust line comment was read as a lifetime, so `// don't do this` was cut at the apostrophe and the rest of the line rendered as code. English comments in Rust are full of them.
+
 ### Fixed
 
 - **Shortcode output was unstyled.** The stylesheet registered by `block.json` is enqueued only when that block is on the page, and a shortcode is not that block, so the markup carried `.jsray-block` classes with nothing behind them.

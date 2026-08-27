@@ -6,7 +6,7 @@
   "publicBetaReleased": true,
   "bundledCore": {
     "project": "jsray",
-    "version": "0.0.1-beta.5"
+    "version": "0.0.2-beta.1"
   },
   "notes": "Official open-source WordPress integration in the JSRay ecosystem. Bundles a snapshot of JSRay Core assets. Official site: https://jsray.org"
 }

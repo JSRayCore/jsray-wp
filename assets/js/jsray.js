@@ -564,16 +564,39 @@
     // preceded: leaving it in place would keep one pattern around that can
     // still span from any apostrophe to any later one.
     if (opts.lifetimes) {
-      const at = rules.findIndex((r) => r.cls === 'tk-string' && r.pattern.source[0] === "'");
-      rules.splice(
-        at,
-        1,
+      // The character literal stays where the string rule was, because it is a
+      // string and line comments deliberately come after strings.
+      const quoted = rules.findIndex(
+        (r) => r.cls === 'tk-string' && r.pattern.source[0] === "'"
+      );
+      rules.splice(quoted, 1, {
         // Exactly one character or one escape, then the closing quote.
-        { cls: 'tk-string', pattern: /'(?:\\(?:u\{[\da-fA-F]{1,6}\}|.)|[^'\\\n])'/ },
+        cls: 'tk-string',
+        pattern: /'(?:\\(?:u\{[\da-fA-F]{1,6}\}|.)|[^'\\\n])'/,
+      });
+
+      // The lifetime goes AFTER the line-comment rule, and the distance between
+      // the two is the whole point.
+      //
+      // A lifetime has no closing quote, so `'[A-Za-z_]\w*` matches any
+      // apostrophe followed by letters — including the one in `// don't do
+      // this`, which line comments cannot defend against from behind. Sitting
+      // ahead of them, this rule cut the comment at the apostrophe and rendered
+      // the rest as code: beta.5 shipped that, and English comments in Rust are
+      // full of `don't`, `it's` and `one's`.
+      //
+      // Behind the comment rule it still fires everywhere a lifetime can occur,
+      // because a lifetime never appears inside a comment or a string — those
+      // are already consumed by the time it is reached.
+      const lineComment = rules.findIndex(
+        (r) => r.cls === 'tk-comment' && r.pattern.source.indexOf('\\/\\/') === 0
+      );
+      rules.splice(lineComment + 1, 0, {
         // A lifetime occupies the slot a type parameter occupies, so it is
         // typed as one — JSRay's vocabulary has no separate lifetime class.
-        { cls: 'tk-type', pattern: /'[A-Za-z_]\w*\b/ }
-      );
+        cls: 'tk-type',
+        pattern: /'[A-Za-z_]\w*\b/,
+      });
     }
 
     // Languages whose declarations don't always end in `(...) {` (e.g. Scala's
@@ -1500,7 +1523,7 @@
      * Runtime version, for shell/core compatibility negotiation.
      * Must match version.json — tools/check-versions.mjs asserts it.
      */
-    version: '0.0.1-beta.5',
+    version: '0.0.2-beta.1',
     languages: G,
     normalizeLanguage,
     detectLanguage,

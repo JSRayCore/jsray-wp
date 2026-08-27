@@ -138,7 +138,7 @@ replace the rendering engine while keeping the block UI, settings, and markup.
 * Fixed line numbers drifting out of step with the code on themes that wrap long lines. Where line numbers are shown, code now scrolls sideways instead of wrapping.
 * Removed load_plugin_textdomain(), discouraged since WordPress 4.6 and loading nothing here.
 * Verified on WordPress 7.1 with PHP 8.3 and on 6.0 with PHP 7.4; the official Plugin Check reports no errors or warnings.
-* Bundled JSRay Core 0.0.1-beta.5.
+* Bundled JSRay Core 0.0.2-beta.1.
 * First public beta.
 * Added custom colors: override any of the 23 token classes with a palette from the JSRay Theme Studio, validated against the bundled Core's token vocabulary.
 * Added core integrity verification with an admin warning when the bundled renderer no longer matches its official build.

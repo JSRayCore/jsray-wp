@@ -121,4 +121,25 @@ writeFileSync(
   ) + '\n'
 );
 
+// The README badges state the bundled Core, and nothing was keeping them in
+// step: this script updated version.json and left them behind, which is how
+// they came to sit three releases stale on the first thing anyone sees.
+// check:versions rejects a mismatch, so leaving it to a person meant a failed
+// run rather than a wrong badge — but a failed run for something derivable is
+// just a chore. Derive it.
+const badge = coreRelease.version.replace(/-/g, '--');
+
+for (const doc of ['README.md', 'README.zh-CN.md']) {
+  const before = readFileSync(doc, 'utf8');
+  const after = before.replace(
+    /JSRay%20Core-[^-)]*(?:--[^-)]*)*-success/g,
+    `JSRay%20Core-${badge}-success`
+  );
+
+  if (after !== before) {
+    writeFileSync(doc, after);
+    console.log(`${doc} — Core badge now reads ${coreRelease.version}`);
+  }
+}
+
 console.log(`core-integrity.json pinned — ${Object.keys(files).length} files, Core ${coreRelease.version}`);
