@@ -61,10 +61,34 @@ includes('readme.txt', `= ${version} =`);
 includes('readme.txt', 'Tested up to:');
 includes('readme.txt', 'Requires at least:');
 includes('readme.txt', 'Requires PHP:');
-if (channel === 'internal') {
-  includes('readme.txt', 'Internal test build');
-} else if (channel === 'beta') {
-  includes('readme.txt', 'Public beta');
+// Phase wording, in both directions and across all three user-facing files.
+//
+// Asserting only that the right phrase is present let the wrong one sit beside
+// it: both READMEs carried "Internal test build · no public beta yet" as their
+// subtitle for the whole public beta, because nothing looked for it and nothing
+// looked at the READMEs at all. The changelog is exempt — `= 0.0.1-internal.1 =`
+// really was an internal build and its entry should keep saying so.
+const PHASE = {
+  internal: { want: 'Internal test build', reject: /Public beta|公开测试版/ },
+  beta: { want: 'Public beta', reject: /Internal test build|内部测试版/ },
+  stable: { want: null, reject: /Internal test build|Public beta|内部测试版|公开测试版/ },
+};
+
+const phase = PHASE[channel];
+
+if (phase) {
+  if (phase.want) includes('readme.txt', phase.want);
+
+  for (const doc of ['README.md', 'README.zh-CN.md', 'readme.txt']) {
+    const body = doc === 'readme.txt'
+      ? read(doc).slice(0, read(doc).indexOf('== Changelog =='))
+      : read(doc);
+
+    expect(
+      !phase.reject.test(body),
+      `${doc} still describes a phase this release is not (channel: ${channel})`
+    );
+  }
 }
 
 // Files a distributable plugin must carry.

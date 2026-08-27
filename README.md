@@ -16,7 +16,7 @@
 
 > JSRay Core rendering for WordPress code blocks · Gutenberg block · shortcode · compatibility mode
 
-<sub>Internal test build · no public beta yet · bundles a JSRay Core snapshot</sub>
+<sub>Public beta · GPLv2 or later · bundles a digest-verified JSRay Core snapshot</sub>
 
 ---
 

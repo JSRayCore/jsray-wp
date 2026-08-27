@@ -16,7 +16,7 @@
 
 > 为 WordPress 代码块提供 JSRay Core 渲染 · Gutenberg 区块 · 短代码 · 兼容模式
 
-<sub>内部测试版 · 尚未发布公开测试版 · 内置 JSRay Core 快照</sub>
+<sub>公开测试版 · GPLv2 or later · 内置经摘要校验的 JSRay Core 快照</sub>
 
 ---
 
