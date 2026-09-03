@@ -1,7 +1,7 @@
 # Contributing to JSRay WordPress Plugin
 
 Issues and PRs are welcome. This repository is the WordPress integration; changes to
-the renderer itself belong in [JSRay Core](https://github.com/JSRayCore/JSRay).
+the renderer itself belong in [JSRay Core](https://github.com/jsrayorg/jsray).
 
 ## Development workflow
 

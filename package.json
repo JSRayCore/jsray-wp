@@ -8,10 +8,10 @@
   "homepage": "https://jsray.org",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JSRayCore/jsray-wp.git"
+    "url": "git+https://github.com/jsrayorg/jsray-wp.git"
   },
   "bugs": {
-    "url": "https://github.com/JSRayCore/jsray-wp/issues"
+    "url": "https://github.com/jsrayorg/jsray-wp/issues"
   },
   "scripts": {
     "build": "sh tools/build-plugin.sh",

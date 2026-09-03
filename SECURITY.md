@@ -20,7 +20,7 @@ This plugin renders code on public WordPress pages, so the security surface is *
 A payload that produces unescaped angle brackets in rendered block output, or that stores an unsanitized setting, is a **high-severity** vulnerability.
 
 Vulnerabilities in the bundled JSRay Core snapshot belong to
-[JSRay Core](https://github.com/JSRayCore/JSRay) — report them the same way, and
+[JSRay Core](https://github.com/jsrayorg/jsray) — report them the same way, and
 fixes reach this project through the next Core sync.
 
 Out of scope:

@@ -47,7 +47,7 @@ const header = `# Copyright (C) 2026 JSRay
 msgid ""
 msgstr ""
 "Project-Id-Version: JSRay\\n"
-"Report-Msgid-Bugs-To: https://github.com/JSRayCore/jsray-wp/issues\\n"
+"Report-Msgid-Bugs-To: https://github.com/jsrayorg/jsray-wp/issues\\n"
 "MIME-Version: 1.0\\n"
 "Content-Type: text/plain; charset=UTF-8\\n"
 "Content-Transfer-Encoding: 8bit\\n"
