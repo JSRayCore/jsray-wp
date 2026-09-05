@@ -10,7 +10,7 @@
 [![License: GPL v2+](https://img.shields.io/badge/License-GPLv2%2B-blue.svg)](LICENSE)
 [![Version](https://img.shields.io/badge/version-0.0.1--beta-blue)](CHANGELOG.md)
 [![Channel](https://img.shields.io/badge/channel-%E5%85%AC%E5%BC%80%E6%B5%8B%E8%AF%95%E7%89%88-blue)](CHANGELOG.md)
-[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.2--beta.1-success)](https://github.com/jsrayorg/jsray)
+[![Core](https://img.shields.io/badge/JSRay%20Core-0.0.2--beta.3-success)](https://github.com/jsrayorg/jsray)
 [![WordPress](https://img.shields.io/badge/WordPress-%E2%89%A5%206.0-blue)](readme.txt)
 [![PHP](https://img.shields.io/badge/PHP-%E2%89%A5%207.4-777bb4)](jsray.php)
 
